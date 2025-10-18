@@ -14,15 +14,17 @@
             font-family: 'Inter', sans-serif;
         }
 
+        /* Default Dark Mode Styles */
         body {
             background: #0f1c2e; /* Dark Blue/Black */
             color: #fff;
             min-height: 100vh;
             position: relative;
             overflow-x: hidden;
+            transition: background 0.3s, color 0.3s;
         }
 
-        /* NEON GRID BACKGROUND EFFECT */
+        /* NEON GRID BACKGROUND EFFECT (Dark Mode Only) */
         body::before {
             content: '';
             position: fixed;
@@ -36,7 +38,131 @@
             pointer-events: none;
             z-index: 0;
         }
+        
+        /* --- LIGHT MODE OVERRIDES --- */
+        body.light-mode {
+            background: #f7f9fc; /* Light Gray/White */
+            color: #333;
+        }
 
+        /* Disable grid effect in Light Mode */
+        body.light-mode::before {
+            display: none;
+        }
+        
+        .light-mode .header { border-bottom: 1px solid #ddd; }
+        .light-mode .logo-text h1 { 
+            background: linear-gradient(90deg, #0056b3, #007bff); 
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .light-mode .theme-toggle, .light-mode .back-btn, .light-mode .settings-btn {
+            background: #fff;
+            border: 1px solid #ccc;
+            color: #007bff;
+        }
+        .light-mode .back-btn { color: #333; }
+        .light-mode .theme-toggle:hover, .light-mode .back-btn:hover, .light-mode .settings-btn:hover {
+            background: #eee;
+            box-shadow: 0 0 10px rgba(0, 123, 255, 0.1);
+        }
+
+        .light-mode .subtitle, .light-mode .footer-text, 
+        .light-mode .vital-label, .light-mode .vital-unit,
+        .light-mode .user-details p, .light-mode .patient-details, 
+        .light-mode .mini-vital-label, .light-mode .schedule-details p,
+        .light-mode .metric-label, .light-mode .x-labels,
+        .light-mode .legend-value, .light-mode .chat-input::placeholder,
+        .light-mode .alert-details p, .light-mode .detail-info p,
+        .light-mode .consultation-list-item p {
+            color: #6c757d;
+        }
+        
+        .light-mode .role-card, .light-mode .dashboard-card,
+        .light-mode .patient-card, .light-mode .schedule-entry,
+        .light-mode .alert-item, .light-mode .consultation-list-item,
+        .light-mode .history-chart-container, .light-mode .detail-header {
+            background: #fff;
+            border: 1px solid #e9ecef;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+            backdrop-filter: none;
+        }
+        
+        .light-mode .chat-prompt {
+            background: rgba(0, 123, 255, 0.1);
+            border-color: #007bff;
+            color: #007bff;
+            box-shadow: 0 0 10px rgba(0, 123, 255, 0.1);
+        }
+        
+        .light-mode .chat-messages .message-box {
+            background: #e9f2ff;
+            border-color: #c7dfff;
+        }
+        .light-mode .chat-messages .message-box.user {
+            background: #f1f3f5;
+            border-color: #ddd;
+        }
+        .light-mode .chat-messages .message-box::before { color: #007bff; }
+        .light-mode .chat-messages .message-box.user::before { color: #28a745; }
+        
+        .light-mode .chat-input, .light-mode .form-group input, 
+        .light-mode .form-group select, .light-mode .form-group textarea {
+            background: #f1f3f5;
+            border-color: #ccc;
+            color: #333;
+        }
+        .light-mode .chat-input:focus { border-color: #007bff; box-shadow: 0 0 5px rgba(0, 123, 255, 0.5); }
+        .light-mode .form-group label { color: #007bff; }
+
+        .light-mode .tab.active { color: #333; border-bottom-color: #007bff; }
+        .light-mode .analytics-tab.active { color: #333; border-bottom-color: #cc66ff; }
+        .light-mode .tabs { border-bottom-color: #e9ecef; }
+
+        .light-mode .patient-card.selected, .light-mode .patient-card:hover {
+            background: #f0f8ff;
+            border-color: #007bff;
+            box-shadow: 0 0 10px rgba(0, 123, 255, 0.1);
+        }
+        .light-mode .case-summary { background: #f0f8ff; border-color: #007bff; }
+
+        .light-mode .action-btn { 
+            background: #f8f9fa; 
+            border: 1px solid #e9ecef; 
+            color: #333;
+        }
+        .light-mode .action-btn:hover { background: #e9ecef; }
+
+        .light-mode .insight-card { 
+            background: rgba(255, 150, 50, 0.1); 
+            border-color: rgba(255, 150, 50, 0.3);
+            box-shadow: none;
+        }
+        .light-mode .insight-header { color: #ffaa66; }
+        .light-mode .insight-text { color: #333; }
+        .light-mode .view-history { color: #007bff; }
+        .light-mode .view-history:hover { color: #0056b3; }
+
+        .light-mode .submit-btn { background: linear-gradient(135deg, #007bff, #0056b3); color: white; }
+        .light-mode .submit-btn:hover { box-shadow: 0 5px 20px rgba(0, 123, 255, 0.2); }
+        .light-mode .export-btn { background: #e9ecef; color: #333; border-color: #ccc; }
+        .light-mode .schedule-btn { background: linear-gradient(135deg, #007bff, #0056b3); color: white; }
+
+        .light-mode .chart-line-area .line-chart-svg path { 
+            stroke: #007bff; 
+            fill: rgba(0, 123, 255, 0.1); 
+        }
+
+        .light-mode .bar { background: #007bff !important; }
+        .light-mode .bar-bg { background: #e9ecef !important; }
+        
+        /* Slider for Light Mode */
+        .light-mode .slider { background-color: #ccc; }
+        .light-mode input:checked + .slider { background-color: #00cc6a; }
+
+        /* General styles, mostly unchanged */
         .container {
             position: relative;
             z-index: 1;
@@ -164,6 +290,10 @@
             background: rgba(255, 255, 255, 0.05);
             box-shadow: 0 15px 30px rgba(0, 0, 0, 0.4);
         }
+        .light-mode .role-card:hover {
+             border-color: rgba(0, 123, 255, 0.5);
+             box-shadow: 0 15px 30px rgba(0, 0, 0, 0.1);
+        }
 
         .role-icon {
             width: 80px;
@@ -201,6 +331,9 @@
         .doctor-card .role-btn { background: linear-gradient(135deg, #4d8cff, #3366cc); color: white; }
         .employer-card .role-btn { background: linear-gradient(135deg, #cc66ff, #9933cc); color: white; }
         .role-btn:hover { transform: scale(1.02); }
+        
+        .light-mode .worker-card .role-btn { color: #333; }
+
 
         .footer-text { margin-top: 40px; color: #556677; font-size: 12px; }
 
@@ -219,6 +352,7 @@
             width: 60px; height: 60px; border-radius: 50%; display: flex;
             align-items: center; justify-content: center; font-size: 24px;
             font-weight: 600;
+            color: #0f1c2e;
         }
         .user-details h2 { font-size: 24px; margin-bottom: 5px; }
         .user-details p { color: #8899aa; font-size: 14px; }
@@ -228,11 +362,18 @@
             background: rgba(0, 255, 136, 0.2); border: 1px solid rgba(0, 255, 136, 0.3);
             padding: 8px 16px; border-radius: 20px; font-size: 14px; color: #00ff88;
         }
+        .light-mode .status-badge {
+            background: rgba(0, 204, 106, 0.2);
+            border-color: rgba(0, 204, 106, 0.3);
+            color: #00cc6a;
+        }
 
         .status-dot {
             width: 8px; height: 8px; background: #00ff88; border-radius: 50%;
             animation: pulse 2s infinite; box-shadow: 0 0 5px #00ff88;
         }
+        .light-mode .status-dot { background: #00cc6a; box-shadow: 0 0 5px #00cc6a; }
+
 
         @keyframes pulse { 0%, 100% { opacity: 1; } 50% { opacity: 0.5; } }
 
@@ -249,7 +390,10 @@
             padding: 30px;
             backdrop-filter: blur(10px);
             box-shadow: inset 0 0 5px rgba(255, 255, 255, 0.05);
+            transition: all 0.3s;
         }
+        
+        .light-mode .dashboard-card { box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05); }
 
         .card-header {
             display: flex; align-items: center; gap: 10px; margin-bottom: 25px;
@@ -280,6 +424,7 @@
             border-left: 5px solid transparent;
             transition: border-left 0.3s;
         }
+        .light-mode .vital-item { background: #f8f9fa; }
 
         .vital-item.warning { border-left-color: #ff6464; }
         .vital-item.normal { border-left-color: #00ff88; }
@@ -326,6 +471,10 @@
         .active-badge { background: rgba(77, 140, 255, 0.2); border: 1px solid rgba(77, 140, 255, 0.3); color: #4d8cff; }
         .urgent-badge { background: rgba(255, 100, 100, 0.2); border: 1px solid rgba(255, 100, 100, 0.3); color: #ff6464; }
         .total-badge { background: rgba(0, 255, 136, 0.2); border: 1px solid rgba(0, 255, 136, 0.3); color: #00ff88; }
+        
+        .light-mode .active-badge { background: rgba(0, 123, 255, 0.2); border-color: rgba(0, 123, 255, 0.3); color: #007bff; }
+        .light-mode .urgent-badge { background: rgba(255, 0, 0, 0.2); border-color: rgba(255, 0, 0, 0.3); color: #dc3545; }
+        .light-mode .total-badge { background: rgba(0, 204, 106, 0.2); border-color: rgba(0, 204, 106, 0.3); color: #00cc6a; }
 
         .tabs { display: flex; gap: 20px; margin-bottom: 30px; border-bottom: 1px solid rgba(255, 255, 255, 0.1); }
         .tab {
@@ -364,12 +513,17 @@
         .urgency-high { background: rgba(255, 100, 100, 0.2); color: #ff6464; }
         .urgency-medium { background: rgba(255, 180, 0, 0.2); color: #ffb400; }
         .urgency-low { background: rgba(0, 255, 136, 0.2); color: #00ff88; }
+        
+        .light-mode .urgency-high { background: rgba(255, 0, 0, 0.2); color: #dc3545; }
+        .light-mode .urgency-medium { background: rgba(255, 165, 0, 0.2); color: #ff8c00; }
+        .light-mode .urgency-low { background: rgba(0, 204, 106, 0.2); color: #00cc6a; }
 
         .patient-vitals { display: flex; gap: 10px; margin-top: 15px; }
         .mini-vital {
             background: rgba(255, 255, 255, 0.05); padding: 10px; border-radius: 10px;
             text-align: center; flex: 1;
         }
+        .light-mode .mini-vital { background: #f1f3f5; }
         .mini-vital-icon { font-size: 18px; margin-bottom: 5px; }
         .mini-vital-value { font-size: 13px; font-weight: 600; }
         .mini-vital-label { font-size: 11px; color: #8899aa; }
@@ -395,12 +549,16 @@
             align-items: center;
             border-left: 5px solid #4d8cff;
         }
+        .light-mode .schedule-entry { border-left-color: #007bff; }
+
         .schedule-time {
             font-size: 32px;
             font-weight: 700;
             color: #00d4ff;
             line-height: 1;
         }
+        .light-mode .schedule-time { color: #007bff; }
+
         .schedule-details {
             flex-grow: 1;
         }
@@ -420,6 +578,10 @@
         }
         .badge-urgent { background: rgba(255, 100, 100, 0.2); color: #ff6464; }
         .badge-scheduled { background: rgba(0, 255, 136, 0.2); color: #00ff88; }
+        
+        .light-mode .badge-urgent { background: rgba(255, 0, 0, 0.2); color: #dc3545; }
+        .light-mode .badge-scheduled { background: rgba(0, 204, 106, 0.2); color: #00cc6a; }
+
 
         /* EMPLOYER DASHBOARD */
         .employer-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 30px; flex-wrap: wrap; gap: 20px; }
@@ -443,6 +605,10 @@
             transition: all 0.3s; color: #8899aa; font-weight: 500;
         }
         .analytics-tab.active { color: white; border-bottom-color: #cc66ff; font-weight: 600; }
+        
+        .light-mode .analytics-tab.active { color: #333; }
+        .light-mode .analytics-tabs { border-bottom-color: #e9ecef; }
+
 
         .metrics-grid {
             display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
@@ -453,6 +619,8 @@
             background: rgba(255, 255, 255, 0.03); border: 1px solid rgba(255, 255, 255, 0.1);
             border-radius: 15px; padding: 25px;
         }
+        .light-mode .metric-card { background: #fff; border-color: #e9ecef; }
+        
         .metric-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 15px; }
         .metric-label { color: #8899aa; font-size: 14px; }
         .metric-icon { font-size: 28px; }
@@ -460,6 +628,10 @@
         .metric-change { font-size: 14px; display: flex; align-items: center; gap: 5px; font-weight: 500;}
         .change-positive { color: #00ff88; }
         .change-negative { color: #ff6464; }
+        
+        .light-mode .change-positive { color: #00cc6a; }
+        .light-mode .change-negative { color: #dc3545; }
+
 
         .charts-container {
             display: grid; grid-template-columns: 1fr 1fr; gap: 30px;
@@ -469,6 +641,8 @@
             background: rgba(255, 255, 255, 0.03); border: 1px solid rgba(255, 255, 255, 0.1);
             border-radius: 20px; padding: 30px;
         }
+        .light-mode .chart-card { background: #fff; border-color: #e9ecef; }
+        
         .chart-title { font-size: 18px; font-weight: 600; margin-bottom: 25px; }
 
         /* LINE CHART STYLING */
@@ -486,11 +660,29 @@
         .legend-value { color: #8899aa; margin-left: auto; }
 
         /* BAR CHART STYLING */
-        .bar-chart-container { height: 250px; display: flex; align-items: flex-end; gap: 20px; padding-bottom: 20px;}
-        .bar-wrapper { flex: 1; display: flex; flex-direction: column; align-items: center; height: 100%; justify-content: flex-end; }
-        .bar { width: 60%; background: #4d8cff; border-radius: 5px 5px 0 0; transition: height 0.5s; position: relative;}
-        .bar-bg { width: 60%; background: rgba(255, 255, 255, 0.1); border-radius: 5px 5px 0 0; position: absolute; top: 0; bottom: 0; }
-        .bar-label { color: #8899aa; font-size: 12px; margin-top: 10px; text-align: center; }
+        .bar-chart-container { height: 250px; display: flex; align-items: flex-end; gap: 20px; padding-bottom: 20px; margin-top: 20px; }
+        .bar-group { flex: 1; display: flex; gap: 5px; height: 100%; justify-content: space-around; }
+        .bar-wrapper { flex-basis: 50%; display: flex; flex-direction: column; align-items: center; height: 100%; justify-content: flex-end; position: relative; }
+        .bar { 
+            width: 100%; 
+            background: #4d8cff; /* Current */
+            border-radius: 5px 5px 0 0; 
+            transition: height 0.5s; 
+            position: absolute; 
+            bottom: 0; 
+        }
+        .bar.target { 
+            background: rgba(255, 255, 255, 0.2); /* Target */
+            z-index: 1;
+        }
+        .bar.current {
+             background: #4d8cff; 
+             z-index: 2;
+        }
+        .bar-label { color: #8899aa; font-size: 12px; margin-top: 10px; text-align: center; position: relative; z-index: 3;}
+        .light-mode .bar.current { background: #007bff; }
+        .light-mode .bar.target { background: #e9ecef; }
+        
 
         /* INSIGHTS TAB */
         .trends-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 30px;}
@@ -499,12 +691,21 @@
             padding: 15px 20px; margin-bottom: 15px; display: flex;
             justify-content: space-between; align-items: center;
         }
+        .light-mode .trend-item, .light-mode .risk-item { background: #f8f9fa; }
+
         .trend-value { font-weight: 600; display: flex; align-items: center; gap: 5px; }
-        .trend-positive { color: #ff6464; } /* A negative health trend is positive for the metric */
-        .trend-negative { color: #ffb400; }
+        .trend-positive { color: #00ff88; } /* A negative health trend is positive for the metric */
+        .trend-negative { color: #ff6464; }
+        
+        .light-mode .trend-positive { color: #00cc6a; }
+        .light-mode .trend-negative { color: #dc3545; }
+
+
         .risk-item { flex-direction: column; align-items: flex-start; padding: 15px 0; }
         .risk-item-header { width: 100%; display: flex; justify-content: space-between; align-items: center; margin-bottom: 5px;}
         .risk-bar { width: 100%; height: 8px; background: rgba(255, 255, 255, 0.1); border-radius: 4px; overflow: hidden; }
+        .light-mode .risk-bar { background: #e9ecef; }
+        
         .risk-fill { height: 100%; background: linear-gradient(90deg, #ff6464, #ffb400); transition: width 0.5s; }
 
         /* CHAT PAGE */
@@ -547,6 +748,9 @@
         .chat-messages {
             display: flex;
             flex-direction: column;
+            overflow-y: auto; /* Enable scrolling for chat history */
+            flex-grow: 1; /* Allow it to take up available space */
+            padding-bottom: 10px;
         }
         .message-box {
             background: rgba(0, 212, 255, 0.1);
@@ -573,7 +777,7 @@
             font-weight: 600;
         }
         .message-box.user::before {
-            content: 'Rajesh:';
+            content: 'rakesh:';
             color: #00ff88;
         }
 
@@ -589,6 +793,8 @@
             padding-top: 10px;
             border-top: 1px solid rgba(255, 255, 255, 0.1);
         }
+        .light-mode .chat-input-area { border-top-color: #e9ecef; }
+
 
         .chat-input {
             flex-grow: 1;
@@ -626,6 +832,8 @@
             border-radius: 15px;
             border-left: 5px solid #4d8cff;
         }
+        .light-mode .detail-header { border-left-color: #007bff; }
+        
         .detail-info h2 { font-size: 28px; }
         .detail-info p { color: #8899aa; }
         
@@ -679,9 +887,17 @@
             align-items: center;
             gap: 20px;
         }
+        .light-mode .alert-item { background: #fff; }
+
         .alert-item.critical { border-left-color: #ff6464; }
         .alert-item.warning { border-left-color: #ffb400; }
         .alert-item.info { border-left-color: #4d8cff; }
+        
+        .light-mode .alert-item.critical { border-left-color: #dc3545; }
+        .light-mode .alert-item.warning { border-left-color: #ffc107; }
+        .light-mode .alert-item.info { border-left-color: #007bff; }
+
+
         .alert-details h4 { margin-bottom: 5px; font-size: 18px; }
         .alert-details p { color: #8899aa; font-size: 14px; }
         .alert-actions button {
@@ -690,6 +906,10 @@
         }
         .alert-actions button.critical-action { background: #ff6464; }
         
+        .light-mode .alert-actions button { background: #007bff; }
+        .light-mode .alert-actions button.critical-action { background: #dc3545; }
+
+
         .setting-toggle {
             display: flex;
             justify-content: space-between;
@@ -698,6 +918,7 @@
             border-bottom: 1px solid rgba(255, 255, 255, 0.1);
         }
         .setting-toggle:last-child { border-bottom: none; }
+        .light-mode .setting-toggle { border-bottom-color: #e9ecef; }
         
         .setting-toggle label {
             font-weight: 500;
@@ -773,6 +994,8 @@
             border-left: 5px solid #cc66ff;
             margin-bottom: 20px;
         }
+        .light-mode .report-summary-item { background: #f8f9fa; }
+
         .report-summary-item h4 {
             font-size: 16px;
             color: #8899aa;
@@ -854,7 +1077,7 @@
                     <div class="logo-icon">🧠</div>
                     <div class="logo-text"><h1>PraanaCare</h1></div>
                 </div>
-                <button class="theme-toggle" onclick="alert('Theme toggle is a mockup function.')">💡 Toggle Theme</button>
+                <button class="theme-toggle" onclick="toggleTheme()">💡 Toggle Light Mode</button>
             </div>
 
             <div class="landing-content">
@@ -893,7 +1116,7 @@
                 <div class="user-info">
                     <div class="user-avatar" style="background: linear-gradient(135deg, #00ff88, #00cc6a);">R</div>
                     <div class="user-details">
-                        <h2>Hello, Rajesh 👋</h2>
+                        <h2>Hello, rakesh 👋</h2>
                         <p>Industrial Worker • Shift: Day</p>
                     </div>
                 </div>
@@ -989,7 +1212,7 @@
                 <div class="user-info">
                     <div class="user-avatar" style="background: linear-gradient(135deg, #00ff88, #00cc6a);">R</div>
                     <div class="user-details">
-                        <h2>Rajesh's Health History</h2>
+                        <h2>rakesh's Health History</h2>
                         <p>Last Updated: Today, 1:00 PM</p>
                     </div>
                 </div>
@@ -1004,14 +1227,14 @@
             
             <div id="worker-vitals" class="worker-history-content active">
                 <h3 class="section-title">7-Day Blood Pressure Trend (AI Smoothing)</h3>
-                 <div class="history-chart-container">
-                    <div class="chart-line-area">
-                        <svg class="line-chart-svg worker-bp-chart" viewBox="0 0 700 250" preserveAspectRatio="none"></svg>
-                        <div class="x-labels">
-                            <span>Day 1</span><span>Day 2</span><span>Day 3</span><span>Day 4</span><span>Day 5</span><span>Day 6</span><span>Day 7</span>
-                        </div>
-                    </div>
-                </div>
+                   <div class="history-chart-container">
+                       <div class="chart-line-area">
+                           <svg class="line-chart-svg worker-bp-chart" viewBox="0 0 700 250" preserveAspectRatio="none"></svg>
+                           <div class="x-labels">
+                               <span>Day 1</span><span>Day 2</span><span>Day 3</span><span>Day 4</span><span>Day 5</span><span>Day 6</span><span>Day 7</span>
+                           </div>
+                       </div>
+                   </div>
             </div>
             
             <div id="worker-consultations" class="worker-history-content" style="display: none;">
@@ -1115,11 +1338,11 @@
                 <h3 class="section-title">Patients by Urgency</h3>
                 <div class="patients-container">
                     <div class="patient-list">
-                        <div class="patient-card selected" data-patient="rajesh" onclick="selectPatient('rajesh'); showPage('patientDetailPage');">
+                        <div class="patient-card selected" data-patient="rakesh" onclick="selectPatient('rakesh'); showPage('patientDetailPage');">
                             <div class="patient-header">
                                 <div class="user-avatar" style="width: 40px; height: 40px; font-size: 16px; background: linear-gradient(135deg, #00ff88, #00cc6a);">RK</div>
                                 <div class="patient-info">
-                                    <div class="patient-name">Rajesh Kumar</div>
+                                    <div class="patient-name">rakesh Kumar</div>
                                     <div class="patient-details">Age 34 • Heat Stress Symptoms</div>
                                     <div class="patient-details">Last seen: 2 hours ago</div>
                                 </div>
@@ -1186,7 +1409,7 @@
                 <div class="schedule-entry">
                     <div class="schedule-time">3:30<span style="font-size: 16px; display: block; font-weight: 500;">PM</span></div>
                     <div class="schedule-details">
-                        <h4>Emergency Consultation - Rajesh Kumar</h4>
+                        <h4>Emergency Consultation - rakesh Kumar</h4>
                         <p>Heat stress symptoms: Elevated BP and Temp ($38.2^\circ\text{C}$). AI initiated call.</p>
                     </div>
                     <span class="schedule-badge badge-urgent">Urgent</span>
@@ -1205,7 +1428,7 @@
                 <h3 class="section-title" style="color:#ff6464">AI Triage Alerts</h3>
                 <div class="alert-item critical">
                     <div class="alert-details">
-                        <h4>CODE RED: Rajesh Kumar - Cardiac Stress</h4>
+                        <h4>CODE RED: rakesh Kumar - Cardiac Stress</h4>
                         <p>Sustained HR > 100 bpm for 15 min in high temp zone. Immediate rest enforced by AI Agent. Review vital history.</p>
                     </div>
                     <div class="alert-actions">
@@ -1238,7 +1461,7 @@
                 <div class="detail-header">
                     <div class="user-avatar" id="patient-detail-avatar" style="background: linear-gradient(135deg, #00ff88, #00cc6a);">RK</div>
                     <div class="detail-info">
-                        <h2 id="patient-detail-name">Rajesh Kumar</h2>
+                        <h2 id="patient-detail-name">rakesh Kumar</h2>
                         <p id="patient-detail-meta">Age 34 • Industrial Worker • Heat Stress Symptoms</p>
                     </div>
                 </div>
@@ -1266,7 +1489,7 @@
                     </div>
                     <div class="dashboard-card">
                         <div class="card-header"><span class="card-icon">⚡</span> Quick Actions</div>
-                        <button class="action-btn" onclick="alert('Initiating tele-consultation with Rajesh Kumar.')">📞 Start Tele-Consultation</button>
+                        <button class="action-btn" onclick="alert('Initiating tele-consultation with rakesh Kumar.')">📞 Start Tele-Consultation</button>
                         <button class="action-btn" onclick="alert('Scheduling follow-up appointment for tomorrow.')">📅 Schedule Follow-up</button>
                     </div>
                 </div>
@@ -1288,8 +1511,8 @@
                 <div class="dashboard-card">
                     <div class="card-header"><span class="card-icon">✍️</span> Add Doctor's Note</div>
                     <form onsubmit="alert('Note submitted to patient file.'); return false;">
-                         <div class="form-group">
-                            <textarea placeholder="Enter your official diagnosis, observation, and treatment notes here..."></textarea>
+                           <div class="form-group">
+                               <textarea placeholder="Enter your official diagnosis, observation, and treatment notes here..."></textarea>
                         </div>
                         <button type="submit" class="role-btn doctor-card">Save Note</button>
                     </form>
@@ -1393,34 +1616,24 @@
             <div id="employer-analytics" class="employer-tab-content" style="display:none;">
                 <div class="chart-card">
                     <div class="chart-title">Department Productivity Impact</div>
-                    <div class="bar-chart-container">
-                        <div class="bar-wrapper"><div class="bar-bg"></div><div class="bar" style="height: 85%; background: rgba(255,255,255,0.2);"></div><div class="bar-label">Construction</div></div>
-                        <div class="bar-wrapper"><div class="bar-bg"></div><div class="bar" style="height: 75%;"></div></div>
-                        
-                        <div class="bar-wrapper"><div class="bar-bg"></div><div class="bar" style="height: 90%; background: rgba(255,255,255,0.2);"></div><div class="bar-label">Manufacturing</div></div>
-                        <div class="bar-wrapper"><div class="bar-bg"></div><div class="bar" style="height: 78%;"></div></div>
-                        
-                        <div class="bar-wrapper"><div class="bar-bg"></div><div class="bar" style="height: 95%; background: rgba(255,255,255,0.2);"></div><div class="bar-label">Warehouse</div></div>
-                        <div class="bar-wrapper"><div class="bar-bg"></div><div class="bar" style="height: 70%;"></div></div>
-                        
-                        <div class="bar-wrapper"><div class="bar-bg"></div><div class="bar" style="height: 88%; background: rgba(255,255,255,0.2);"></div><div class="bar-label">Maintenance</div></div>
-                        <div class="bar-wrapper"><div class="bar-bg"></div><div class="bar" style="height: 80%;"></div></div>
-                    </div>
-                    <div class="x-labels" style="justify-content: space-around; margin-top: 20px;">
-                        <span>Target (Grey)</span><span>Current (Blue)</span>
+                    <div class="bar-chart-container" id="productivity-bar-chart">
+                        </div>
+                    <div class="x-labels" style="justify-content: center; gap: 40px; margin-top: 10px;">
+                        <span style="color: #8899aa;">Target (Grey/Light)</span>
+                        <span style="color: #4d8cff;">Current (Blue)</span>
                     </div>
                 </div>
                 
                 <div class="charts-container" style="margin-top: 30px;">
                     <div class="chart-card" style="border-left: 5px solid #ff6464;">
-                        <div class="chart-title">Predicted Absenteeism (Next 7 days)</div>
+                        <div class="chart-header"><span class="card-icon">⚠️</span>Predicted Absenteeism (Next 7 days)</div>
                         <div class="metric-value" style="color: #ff6464;">12%</div>
                         <div class="metric-change change-positive">
                             <span style="font-size: 18px;">🔺</span> 4% increase over last period due to fatigue risk.
                         </div>
                     </div>
                     <div class="chart-card" style="border-left: 5px solid #00ff88;">
-                        <div class="chart-title">ROI Analysis: Healthcare Cost Reduction</div>
+                        <div class="chart-header"><span class="card-icon">💰</span>ROI Analysis: Healthcare Cost Reduction</div>
                         <div class="metric-value" style="color: #00ff88;">$45K/month</div>
                         <div class="metric-change change-positive">
                             <span style="font-size: 18px;">✅</span> Achieved by preventative interventions.
@@ -1440,7 +1653,7 @@
                         <button onclick="alert('Sent HVAC service ticket and mandatory break order.')">Action</button>
                     </div>
                 </div>
-                 <div class="alert-item critical">
+                   <div class="alert-item critical">
                     <div class="alert-details">
                         <h4>Personnel: Critical Risk Level Workers - 2</h4>
                         <p>Two workers currently flagged with **CODE RED** level vitals (Heat Stress, Cardiac Overload). Doctor is engaged. **RISK TO LIFE.**</p>
@@ -1594,14 +1807,14 @@
                 <div class="chat-messages" id="chat-messages-container">
                     <div class="message-box">
                         <div class="message-content">
-                            Hello Rajesh! I'm your Praana AI health assistant. I see your heart rate is elevated to **94 bpm**. How are you feeling right now?
+                            Hello rakesh! I'm your Praana AI health assistant. I see your heart rate is elevated to **94 bpm**. How are you feeling right now?
                         </div>
                         <p style="text-align: right; font-size: 11px; color: #556677; margin-top: 5px;">1:00 PM</p>
                     </div>
                 </div>
                 
                 <div class="chat-input-area">
-                    <input type="text" class="chat-input" id="chat-input" placeholder="Describe your symptoms or ask for help..." />
+                    <input type="text" class="chat-input" id="chat-input" placeholder="Describe your symptoms or ask for help..." onkeydown="if(event.key === 'Enter') sendMessage()" />
                     <button class="chat-send-btn" onclick="sendMessage()">
                         ➤
                     </button>
@@ -1615,8 +1828,8 @@
         // --- MOCK DATA FOR NEW PAGES ---
 
         const patientCaseData = {
-            'rajesh': {
-                name: 'Rajesh Kumar',
+            'rakesh': {
+                name: 'rakesh Kumar',
                 meta: 'Age 34 • Industrial Worker • Heat Stress Symptoms',
                 avatarBg: 'linear-gradient(135deg, #00ff88, #00cc6a)',
                 summary: `
@@ -1648,10 +1861,10 @@
                 hrTrend: [70, 72, 75, 78, 80, 82, 85, 88, 85, 88],
             },
             'priya': {
-                 name: 'Priya Sharma',
-                 meta: 'Age 29 • Industrial Worker • Routine Check-up',
-                 avatarBg: 'linear-gradient(135deg, #cc66ff, #9933cc)',
-                 summary: `
+                name: 'Priya Sharma',
+                meta: 'Age 29 • Industrial Worker • Routine Check-up',
+                avatarBg: 'linear-gradient(135deg, #cc66ff, #9933cc)',
+                summary: `
                     <h4 style="font-size: 24px; color: #00ff88; margin-bottom: 10px;">🟢 LOW CASE: Routine Check-up</h4>
                     <p style="color: #00d4ff; font-weight: 600; margin-bottom: 15px;">AI Triage: No Immediate Risk</p>
                     <ul style="list-style: none; text-align: left; padding-left: 0; font-size: 14px; line-height: 2;">
@@ -1667,6 +1880,12 @@
         // Mock data for charts
         const healthIndexData = [75, 80, 95, 68, 70, 85, 90]; 
         const workerBPTrend = [120, 122, 125, 128, 126, 124, 128]; // Mock Systolic BP
+        const productivityData = [
+            { label: 'Construction', target: 85, current: 75 },
+            { label: 'Manufacturing', target: 90, current: 78 },
+            { label: 'Warehouse', target: 95, current: 70 },
+            { label: 'Maintenance', target: 88, current: 80 }
+        ];
 
         // --- CHART UTILITIES ---
 
@@ -1691,6 +1910,16 @@
             // Clear previous content
             svg.innerHTML = '';
 
+            // Get base colors for dynamic rendering
+            const baseColor = color;
+            const fillColor = document.body.classList.contains('light-mode') 
+                ? 'rgba(0, 123, 255, 0.1)' 
+                : baseColor.replace(')', ', 0.1)').replace('rgb', 'rgba').replace('#00d4ff', 'rgba(0, 212, 255, 0.1)').replace('#ff6464', 'rgba(255, 100, 100, 0.1)');
+            const strokeColor = document.body.classList.contains('light-mode') && baseColor === '#00d4ff' ? '#007bff' : baseColor;
+            const gridColor = document.body.classList.contains('light-mode') ? 'rgba(0, 0, 0, 0.08)' : 'rgba(255, 255, 255, 0.08)';
+            const circleStrokeColor = document.body.classList.contains('light-mode') ? '#fff' : '#0f1c2e';
+
+
             // Add Y-axis grid lines (Mock)
             for(let i = 0; i <= 4; i++) {
                 const y = (height / 4) * i;
@@ -1699,14 +1928,19 @@
                 line.setAttribute('y1', height - y);
                 line.setAttribute('x2', width);
                 line.setAttribute('y2', height - y);
-                line.setAttribute('stroke', 'rgba(255, 255, 255, 0.08)');
+                line.setAttribute('stroke', gridColor);
                 svg.appendChild(line);
             }
+
+            // Simple scaling: Normalize data to 0-100 range for display, then map to height.
+            const minVal = Math.min(...data);
+            const range = maxValue - minVal;
+            const scaledData = data.map(d => (d - minVal) / range * 250); // Scale to 0-250 height
 
             // Calculate points and create path string
             const points = data.map((d, i) => {
                 const x = (i / (numPoints - 1)) * width;
-                const y = height - ((d - (maxValue - 100)) / 100) * height; // Simple scaling
+                const y = height - (scaledData[i] || 0);
                 return `${x},${y}`;
             }).join(' ');
 
@@ -1716,13 +1950,13 @@
             // Path definition for area fill
             const areaPathD = `M0,${height} L${points} L${width},${height} Z`;
             path.setAttribute('d', areaPathD);
-            path.setAttribute('fill', color.replace(')', ', 0.1)').replace('rgb', 'rgba').replace('#00d4ff', 'rgba(0, 212, 255, 0.1)').replace('#ff6464', 'rgba(255, 100, 100, 0.1)'));
+            path.setAttribute('fill', fillColor);
             svg.appendChild(path);
             
             // Path definition for line
             const linePath = document.createElementNS("http://www.w3.org/2000/svg", 'path');
             linePath.setAttribute('d', `M${points.split(' ')[0]} L${points}`);
-            linePath.setAttribute('stroke', color);
+            linePath.setAttribute('stroke', strokeColor);
             linePath.setAttribute('fill', 'none');
             linePath.setAttribute('stroke-width', '3');
             svg.appendChild(linePath);
@@ -1730,14 +1964,14 @@
             // Add circles for points
             data.forEach((d, i) => {
                 const x = (i / (numPoints - 1)) * width;
-                const y = height - ((d - (maxValue - 100)) / 100) * height;
+                const y = height - (scaledData[i] || 0);
 
                 const circle = document.createElementNS("http://www.w3.org/2000/svg", 'circle');
                 circle.setAttribute('cx', x);
                 circle.setAttribute('cy', y);
                 circle.setAttribute('r', 5);
-                circle.setAttribute('fill', color);
-                circle.setAttribute('stroke', '#0f1c2e');
+                circle.setAttribute('fill', strokeColor);
+                circle.setAttribute('stroke', circleStrokeColor);
                 circle.setAttribute('stroke-width', 2);
                 svg.appendChild(circle);
             });
@@ -1754,14 +1988,16 @@
             
             // Risk Factor Distribution data (sum must be 100)
             const data = [
-                { percent: 45, color: '#ff6464' }, // Heat Stress
-                { percent: 25, color: '#ffb400' }, // Fatigue
-                { percent: 20, color: '#00ff88' }, // Respiratory
-                { percent: 10, color: '#4d8cff' }  // Injury
+                { percent: 45, color: document.body.classList.contains('light-mode') ? '#dc3545' : '#ff6464' }, // Heat Stress
+                { percent: 25, color: document.body.classList.contains('light-mode') ? '#ff8c00' : '#ffb400' }, // Fatigue
+                { percent: 20, color: document.body.classList.contains('light-mode') ? '#00cc6a' : '#00ff88' }, // Respiratory
+                { percent: 10, color: document.body.classList.contains('light-mode') ? '#007bff' : '#4d8cff' }  // Injury
             ];
             
             let cumulativePercentage = 0;
-            
+            const centerColor = document.body.classList.contains('light-mode') ? '#f7f9fc' : '#0f1c2e';
+            const strokeColor = document.body.classList.contains('light-mode') ? '#e9ecef' : '#0f1c2e';
+
             data.forEach(slice => {
                 const startAngle = cumulativePercentage * 3.6;
                 const endAngle = (cumulativePercentage + slice.percent) * 3.6;
@@ -1781,7 +2017,7 @@
                 const path = document.createElementNS("http://www.w3.org/2000/svg", 'path');
                 path.setAttribute('d', pathData);
                 path.setAttribute('fill', slice.color);
-                path.setAttribute('stroke', '#0f1c2e');
+                path.setAttribute('stroke', strokeColor);
                 path.setAttribute('stroke-width', 1);
                 svg.appendChild(path);
                 
@@ -1793,11 +2029,57 @@
             center.setAttribute('cx', 50);
             center.setAttribute('cy', 50);
             center.setAttribute('r', 25);
-            center.setAttribute('fill', '#0f1c2e');
+            center.setAttribute('fill', centerColor);
             svg.appendChild(center);
         }
         
-        // Function to draw charts when page loads
+        // Function to draw the bar chart
+        function drawBarChart() {
+            const container = document.getElementById('productivity-bar-chart');
+            if (!container) return;
+            container.innerHTML = ''; // Clear previous content
+
+            // Max possible height (100% productivity) corresponds to the full height of the container
+            const maxHeight = container.clientHeight; // 250px from CSS
+
+            productivityData.forEach(item => {
+                // Calculate heights in pixels (assuming max productivity is 100%)
+                const targetHeight = (item.target / 100) * maxHeight;
+                const currentHeight = (item.current / 100) * maxHeight;
+
+                const group = document.createElement('div');
+                group.className = 'bar-group';
+                
+                // Target Bar Wrapper
+                const targetWrapper = document.createElement('div');
+                targetWrapper.className = 'bar-wrapper';
+                const targetBar = document.createElement('div');
+                targetBar.className = 'bar target';
+                targetBar.style.height = `${targetHeight}px`;
+                targetWrapper.appendChild(targetBar);
+                group.appendChild(targetWrapper);
+
+                // Current Bar Wrapper
+                const currentWrapper = document.createElement('div');
+                currentWrapper.className = 'bar-wrapper';
+                const currentBar = document.createElement('div');
+                currentBar.className = 'bar current';
+                currentBar.style.height = `${currentHeight}px`;
+                currentWrapper.appendChild(currentBar);
+                
+                // Label (placed on the right bar's wrapper for alignment)
+                const label = document.createElement('div');
+                label.className = 'bar-label';
+                label.textContent = item.label;
+                currentWrapper.appendChild(label);
+                
+                group.appendChild(currentWrapper);
+
+                container.appendChild(group);
+            });
+        }
+
+        // Function to draw all charts that need rendering
         function renderCharts() {
             // Employer Overview Chart
             drawLineChart('#employer-health-index-chart', healthIndexData, 100, '#00d4ff');
@@ -1806,10 +2088,15 @@
             // Health History Chart (Default to BP trend)
             drawLineChart('.worker-bp-chart', workerBPTrend, 130, '#00ff88');
             
-            // Patient Detail Chart (Initial load for selected patient)
+            // Patient Detail Chart (Current selected patient HR trend)
             if(document.querySelector('.patient-hr-chart')) {
-                const initialPatientId = document.querySelector('.patient-card.selected')?.dataset.patient || 'rajesh';
-                drawLineChart('.patient-hr-chart', patientCaseData[initialPatientId].hrTrend, 120, '#ff6464');
+                const currentPatientId = selectedPatientId || 'rakesh';
+                drawLineChart('.patient-hr-chart', patientCaseData[currentPatientId].hrTrend, 120, '#ff6464');
+            }
+            
+            // Only draw bar chart if the analytics tab is active
+            if (document.getElementById('employer-analytics')?.style.display !== 'none') {
+                drawBarChart();
             }
         }
 
@@ -1817,7 +2104,7 @@
         // --- NAVIGATION AND TABS ---
 
         let activePage = 'landingPage';
-        let selectedPatientId = 'rajesh';
+        let selectedPatientId = 'rakesh';
 
         function showPage(pageId) {
             // Hide all pages
@@ -1871,7 +2158,7 @@
             if (summaryContent) {
                 summaryContent.innerHTML = data.summary;
                 summaryContent.style.textAlign = 'left';
-                summaryContent.style.color = 'white';
+                summaryContent.style.color = document.body.classList.contains('light-mode') ? '#333' : 'white';
             }
 
             // Update Patient Detail Page
@@ -1904,7 +2191,7 @@
 
         // WORKER HISTORY PAGE LOGIC
         function switchWorkerHistoryTab(tabName) {
-             document.querySelectorAll('#healthHistoryPage .tab').forEach(tab => {
+              document.querySelectorAll('#healthHistoryPage .tab').forEach(tab => {
                 tab.classList.remove('active');
             });
             document.querySelector(`#healthHistoryPage .tab[data-tab="${tabName}"]`).classList.add('active');
@@ -1946,6 +2233,14 @@
                 content.style.display = 'none';
             });
             document.getElementById(`employer-${tabName}`).style.display = 'block';
+            
+            // FIX: Render bar chart when switching to the analytics tab
+            if (tabName === 'analytics') {
+                setTimeout(drawBarChart, 50);
+            } else if (tabName === 'overview') {
+                 // Re-render line/pie charts for overview as they might have been drawn in light mode
+                 setTimeout(renderCharts, 50);
+            }
         }
         
         // SETTINGS PAGE LOGIC
@@ -1997,12 +2292,29 @@
                 chatContainer.scrollTop = chatContainer.scrollHeight;
             }, 1000);
         }
+        
+        // --- THEME TOGGLE LOGIC ---
+        function toggleTheme() {
+            const isLightMode = document.body.classList.toggle('light-mode');
+            const toggleButton = document.querySelector('.theme-toggle');
+            
+            if (isLightMode) {
+                toggleButton.innerHTML = '💡 Toggle Dark Mode';
+                toggleButton.style.color = '#333';
+            } else {
+                toggleButton.innerHTML = '💡 Toggle Light Mode';
+                toggleButton.style.color = '#00d4ff';
+            }
+            
+            // Re-render all SVG charts with new colors/styles
+            renderCharts();
+        }
 
 
         // --- INITIAL SETUP ---
         document.addEventListener('DOMContentLoaded', () => {
             // Set initial selected patient for Doctor view and Patient Detail View
-            selectPatient('rajesh');
+            selectPatient('rakesh');
             
             // Render charts on initial load
             renderCharts();
